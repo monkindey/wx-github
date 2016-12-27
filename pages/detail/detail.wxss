@@ -1,0 +1,48 @@
+/**
+ * 颜色 #4fc08d
+ */
+
+/* common */
+.title {
+	font-size: 20px;
+	display: block;
+	border-left: 2px solid #ccc;
+	padding: 5rpx;
+	text-indent: 10rpx;
+}
+
+.detail-view {
+	display: flex;
+	flex-direction: column;
+	padding: 20rpx;
+} 
+
+.avatar-view {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.avatar {
+	border: 1rpx solid #ccc;
+	height: 200rpx;
+	width: 200rpx;
+	border-radius: 200rpx;
+}
+
+.basic {
+	margin-bottom: 20rpx;
+	text-align: center;
+}
+
+.basic .name {
+	color: #ccc
+}
+
+.profile-detail {
+	font-size: 13px;
+	display: block;
+	padding: 0;
+	line-height: 1.2;
+}

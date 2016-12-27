@@ -1,0 +1,4 @@
+<view>
+	<input class="input-name" bindinput="bindInputName" value="{{ name }}" placeholder="请输入Github ID" />
+	<button bindtap="bindSearch" type="primary">确定</button>
+</view>

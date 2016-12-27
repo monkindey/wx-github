@@ -1,0 +1,14 @@
+page {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+view {
+	width: 80%;
+}
+
+.input-name {
+	margin-bottom: 20rpx;
+}
