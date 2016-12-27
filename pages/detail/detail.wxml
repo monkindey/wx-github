@@ -3,13 +3,13 @@
 		<image class="avatar" mode="widthFix" src="{{ detail.avatar_url }}"/>
 	</view>
 	<view class="basic">
-		<text class="name">{{ detail.name }}</text> -
-		<text>{{ detail.email }}</text>
+		<text class="name">{{ detail.name }}</text>
+		<text class="email">{{ detail.email }}</text>
 	</view>
 	<view class="profile">
 		<text class="title">Profile</text>
 		<text class="profile-detail">
-			On Github since {{ detail.created_at }}, {{ detail.name }} is a developer based in {{ detail.location }} with {{ detail.public_repos }} public repositories and {{ detail.followers }} followers.
+			On Github since <text class="highlight">{{ detail.year }}</text>, {{ detail.name }} is a developer based in {{ detail.location }} with <text class="highlight">{{ detail.public_repos }}</text> public repositories and <text class="highlight">{{ detail.followers }}</text> followers.
 		</text>
 	</view>
 </view>
