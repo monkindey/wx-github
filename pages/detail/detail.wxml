@@ -4,7 +4,7 @@
 	</view>
 	<view class="basic">
 		<text class="name">{{ user.name }}</text>
-		<text class="email">{{ user.email }}</text>
+		<text class="email">{{ user.email || "" }}</text>
 	</view>
 	<view class="profile">
 		<text class="title">Profile</text>

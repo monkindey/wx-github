@@ -4,7 +4,7 @@
 export default function parallel(tasks, callback) {
 	var len = tasks.length;
 	var results = [];
-	tasks.forEach(function(task) {
+	tasks.forEach(function(task, i) {
 		// 去fetch每一个url
 		task().then(function(res) {
 			if(res.ok) {
@@ -12,7 +12,7 @@ export default function parallel(tasks, callback) {
 			}
 		}).then(function(json) {
 			len--;
-			results.push(json);
+			results[i] = json;
 			if(len === 0) {
 				callback.apply(null, results);
 			}

@@ -15,7 +15,9 @@ Page({
 
 	bindSearch: function() {
 		var userUrl = 'https://api.github.com/users/' + this.data.name;
-		var repoUrl = 'https://api.github.com/users/' + this.data.name + '/repos?per_page=100';
+		var repoUrl = 'https://api.github.com/users/' + this.data.name + '/repos?per_page=1000';
+		var prUrl = 'https://api.github.com/search/issues?q=type:pr+is:merged+author:'
+					+ this.data.name
 		var me = this;
 
 		wx.showToast({
@@ -24,17 +26,18 @@ Page({
 			duration: 20000
 		});
 
-		var tasks = [userUrl, repoUrl].map(function(url) {
+		var tasks = [userUrl, repoUrl, prUrl].map(function(url) {
 			return function() {
 				return fetch(url)
 			}
 		});
 
-		parallel(tasks, function(user, repo) {
+		parallel(tasks, function(user, repo, pr) {
 			wx.hideToast();
 			wx.setStorageSync(app.storageName, {
 				user: user,
-				repo: repo
+				repo: repo,
+				pr: pr
 			});
 			wx.navigateTo({
 				url: '../detail/detail'
