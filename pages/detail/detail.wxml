@@ -1,15 +1,30 @@
 <view class="detail-view">
 	<view class="avatar-view">
-		<image class="avatar" mode="widthFix" src="{{ detail.avatar_url }}"/>
+		<image class="avatar" mode="widthFix" src="{{ user.avatar_url }}"/>
 	</view>
 	<view class="basic">
-		<text class="name">{{ detail.name }}</text>
-		<text class="email">{{ detail.email }}</text>
+		<text class="name">{{ user.name }}</text>
+		<text class="email">{{ user.email }}</text>
 	</view>
 	<view class="profile">
 		<text class="title">Profile</text>
-		<text class="profile-detail">
-			On Github since <text class="highlight">{{ detail.year }}</text>, {{ detail.name }} is a developer based in {{ detail.location }} with <text class="highlight">{{ detail.public_repos }}</text> public repositories and <text class="highlight">{{ detail.followers }}</text> followers.
+		<text class="profile-detail">  On Github since <text class="highlight">{{ user.year }}</text>, {{ user.name }} is a developer based in {{ user.location }} with <text class="highlight">{{ user.public_repos }}</text> public repositories and <text class="highlight">{{ user.followers }}</text> followers.
 		</text>
+	</view>
+
+	<view>
+		<text class="title">Repositories</text>
+		<block wx:for="{{ repo }}" wx:key="{{ item.name }}">
+			<view class="repo">
+				<text class="repo-name">{{ item.name }}</text>
+				<text class="repo-desc">{{ item.description }}</text>
+				<text class="repo-popu">This repository has {{ item.stargazers_count }} <block wx:if="{{ item.stargazers_count > 1 }}">stars</block><block wx:else>star</block> {{ item.forks_count }} <block wx:if="{{ item.forks_count > 1 }}">forks</block><block wx:else>fork</block>
+				</text>
+			</view>
+		</block>
+	</view>
+
+	<view>
+		<text class="title">Contributions</text>
 	</view>
 </view>

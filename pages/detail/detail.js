@@ -4,15 +4,25 @@ var app = getApp();
 
 Page({
 	data: {
-		detail: {}
+		user: {},
+		repo: []
 	},
 
 	onLoad: function() {
 		var detail = wx.getStorageSync(app.storageName) || {};
-		detail.year = getYear(detail.created_at);
-		console.log(detail.year);
+		var repo = detail.repo.filter(function(r) {
+			return !r.fork
+		});
+
+		detail.user.year = getYear(detail.user.created_at);
+
+		repo.sort(function(p, c) {
+			return (p.stargazers_count * 2 + parseInt(p.forks_count)) > (c.stargazers_count * 2 + parseInt(c.forks_count))
+		}).reverse();
+
 		this.setData({
-			detail: detail
+			user: detail.user,
+			repo: repo.slice(0, 5)
 		})
 	}
 })

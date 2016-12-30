@@ -1,3 +1,4 @@
+var parallel = require('../../utils/parallel').default;
 var app = getApp();
 
 Page({
@@ -13,21 +14,28 @@ Page({
 	},
 
 	bindSearch: function() {
-		var prefixUrl = 'https://api.github.com/users/';
+		var userUrl = 'https://api.github.com/users/' + this.data.name;
+		var repoUrl = 'https://api.github.com/users/' + this.data.name + '/repos?per_page=100';
 		var me = this;
+
 		wx.showToast({
 			title: '加载中',
 			icon: 'loading',
-			duration: 10000
+			duration: 20000
 		});
 
-		fetch(prefixUrl + this.data.name).then(function(res) {
-			if(res.ok) {
-				return res.json();
+		var tasks = [userUrl, repoUrl].map(function(url) {
+			return function() {
+				return fetch(url)
 			}
-		}).then(function(res) {
+		});
+
+		parallel(tasks, function(user, repo) {
 			wx.hideToast();
-			wx.setStorageSync(app.storageName, res);
+			wx.setStorageSync(app.storageName, {
+				user: user,
+				repo: repo
+			});
 			wx.navigateTo({
 				url: '../detail/detail'
 			})
