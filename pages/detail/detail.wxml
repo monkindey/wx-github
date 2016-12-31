@@ -26,5 +26,11 @@
 
 	<view>
 		<text class="title">Contributions</text>
+		<block wx:for="{{ prs }}" wx:key="{{ item.name }}">
+			<view class="repo">
+				<text class="repo-name">{{ item.name }}</text>
+				<text class="repo-desc">{{ user.name }} has contributed for  {{ item.popularity }} commit(s)</text>
+			</view>
+		</block>
 	</view>
 </view>

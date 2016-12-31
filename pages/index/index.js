@@ -15,9 +15,9 @@ Page({
 
 	bindSearch: function() {
 		var userUrl = 'https://api.github.com/users/' + this.data.name;
-		var repoUrl = 'https://api.github.com/users/' + this.data.name + '/repos?per_page=1000';
+		var repoUrl = 'https://api.github.com/users/' + this.data.name + '/repos?per_page=100';
 		var prUrl = 'https://api.github.com/search/issues?q=type:pr+is:merged+author:'
-					+ this.data.name
+					+ this.data.name + '&per_page=100'
 		var me = this;
 
 		wx.showToast({

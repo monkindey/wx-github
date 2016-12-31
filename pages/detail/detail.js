@@ -7,7 +7,8 @@ var app = getApp();
 Page({
 	data: {
 		user: {},
-		repo: []
+		repo: [],
+		prs: []
 	},
 
 	onShareAppMessage: function() {
@@ -18,13 +19,34 @@ Page({
 		}
 	},
 
+	collectPr: function(prs) {
+		prs = prs.reduce(function(p, c) {
+			if(!p[c.repository_url]) {
+				p[c.repository_url] = {
+					popularity: 1
+				};
+			}else {
+				p[c.repository_url].popularity += 1; 
+			}
+			return p;
+		}, {});
+
+		return Object.keys(prs).map(function(v) {
+			return {
+				name: v.replace('https://api.github.com/repos/', ''),
+				popularity: prs[v].popularity
+			}
+		});
+
+	},
+
 	onLoad: function() {
 		var detail = wx.getStorageSync(app.storageName) || {};
 		var repo = detail.repo.filter(function(r) {
 			return !r.fork
 		});
 
-		console.log(detail.pr);
+		var prs = this.collectPr(detail.pr.items);
 
 		detail.user.year = getYear(detail.user.created_at);
 
@@ -32,9 +54,14 @@ Page({
 			return (computePopularity(p) > computePopularity(c))
 		}).reverse();
 
+		prs.sort(function(p, c) {
+			return p.popularity > c.popularity;
+		}).reverse();
+
 		this.setData({
 			user: detail.user,
-			repo: repo.slice(0, 5)
+			repo: repo.slice(0, 5),
+			prs: prs.slice(0, 5)
 		})
 	}
 })
