@@ -31,7 +31,7 @@ Page({
 				return fetch(url)
 			}
 		});
-
+	
 		parallel(tasks, function(user, repo, pr) {
 			wx.hideToast();
 			wx.setStorageSync(app.storageName, {

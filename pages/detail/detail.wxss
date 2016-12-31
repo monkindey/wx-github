@@ -81,7 +81,7 @@ page {
 	display: block;
 }
 
-.repo-desc {
+.repo-desc, .language-percent {
 	color: #ccc;
 	font-size: 12px;
 }

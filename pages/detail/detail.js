@@ -8,7 +8,8 @@ Page({
 	data: {
 		user: {},
 		repo: [],
-		prs: []
+		prs: [],
+		language: []
 	},
 
 	onShareAppMessage: function() {
@@ -37,7 +38,35 @@ Page({
 				popularity: prs[v].popularity
 			}
 		});
+	},
 
+	/**
+	 * [{ language }] => [{ xxx: { popularity: xxx }}]
+	 */
+	collectLanguage: function(repo) {
+		var language = {};
+		var total = 0;
+		repo.forEach(function(r) {
+			var lang = r.language;
+			if(!lang) {
+				return false;
+			}else if(!language[lang]) {
+				language[lang] = {
+					popularity: 1
+				};
+			}else {
+				language[lang].popularity += 1;
+			}
+			total++;
+		});
+
+		return Object.keys(language).map(function(l) {
+			return {
+				name: l,
+				percent: Math.round(language[l].popularity / total * 100),
+				popularity: language[l].popularity
+			}
+		})
 	},
 
 	onLoad: function() {
@@ -61,7 +90,8 @@ Page({
 		this.setData({
 			user: detail.user,
 			repo: repo.slice(0, 5),
-			prs: prs.slice(0, 5)
+			prs: prs.slice(0, 5),
+			language: this.collectLanguage(repo)
 		})
 	}
 })

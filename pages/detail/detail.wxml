@@ -13,6 +13,15 @@
 	</view>
 
 	<view>
+		<text class="title">Language</text>
+		<block wx:for="{{ language }}" wx:key="{{ item.name }}">
+			<view class="language">
+				<text class="repo-name">{{ item.name }}<text class="language-percent">({{ item.percent }}%)</text></text>
+			</view>
+		</block>
+	</view>
+
+	<view>
 		<text class="title">Repositories</text>
 		<block wx:for="{{ repo }}" wx:key="{{ item.name }}">
 			<view class="repo">
