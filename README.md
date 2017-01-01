@@ -1,3 +1,6 @@
-### Github Card
+### Github Card with MINA(微信小程序)
 
-github名片小程序版本
+> using the github API and producing the card for github user
+
+
+Inspired by [Resume](https://resume.github.io/)

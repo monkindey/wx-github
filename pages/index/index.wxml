@@ -1,4 +1,5 @@
 <view>
+	<image src="http://node-os.com/images/github.png" mode="aspectFill" />
 	<input class="input-name" bindinput="bindInputName" value="{{ name }}" placeholder="请输入Github ID" />
 	<button bindtap="bindSearch" type="primary">确定</button>
 </view>
