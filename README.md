@@ -1,4 +1,8 @@
-### Github Card with MINA(微信小程序)
+## Github Card with MINA(微信小程序)
+
+### Note
+
+This Project just have fun with `小程序`, will be deprecated from now. Sorry!
 
 > using the github API and producing the card for github user
 
